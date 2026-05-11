@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>假訊息與數位媒體識讀｜台灣頂尖研究所</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;900&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#fafaf5;--dark:#1c1c14;--red:#c41c00;--amber:#b45309;--green:#15803d;--text:#1c1c14;--muted:#737367;--border:#d4d0c4;--paper:#f5f2e8;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--text);font-family:'Noto Serif TC',serif;}
+  header{border-bottom:4px double var(--dark);padding:0;}
+  .masthead{text-align:center;padding:24px 60px;border-bottom:1px solid var(--dark);display:flex;align-items:center;justify-content:space-between;}
+  .masthead-date,.masthead-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:1px;}
+  .masthead-logo{font-size:13px;letter-spacing:4px;text-transform:uppercase;font-weight:600;}
+  .breaking-bar{background:var(--red);color:white;text-align:center;padding:8px 60px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:3px;text-transform:uppercase;}
+  .headline-section{padding:40px 60px 32px;text-align:center;border-bottom:3px solid var(--dark);}
+  .topic-kicker{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:16px;opacity:0;animation:fadeIn .5s .3s ease forwards;}
+  h1{font-size:clamp(36px,7vw,84px);font-weight:900;line-height:1;letter-spacing:-1px;opacity:0;animation:fadeIn .5s .5s ease forwards;}
+  .deck{margin-top:16px;font-size:16px;color:var(--muted);font-weight:400;opacity:0;animation:fadeIn .5s .7s ease forwards;}
+  main{display:grid;grid-template-columns:1fr 2fr 1fr;gap:0;border-bottom:2px solid var(--dark);max-width:1200px;margin:0 auto;}
+  .col{padding:36px 32px;border-right:1px solid var(--border);}
+  .col:last-child{border-right:none;}
+  .col-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--dark);}
+  .context-block{opacity:0;animation:fadeIn .6s .5s ease forwards;}
+  .context-block p{font-size:14px;line-height:2;color:var(--muted);margin-bottom:20px;}
+  .stat-callout{background:var(--paper);border-left:3px solid var(--red);padding:16px;margin:20px 0;}
+  .stat-callout .big-num{font-size:48px;font-weight:900;color:var(--red);line-height:1;font-family:'IBM Plex Mono',monospace;}
+  .stat-callout .stat-desc{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.6;}
+  .rank-article{opacity:0;animation:fadeIn .6s ease forwards;}
+  .rank-article:nth-child(1){animation-delay:.6s;}
+  .rank-article:nth-child(2){animation-delay:.8s;}
+  .rank-article:nth-child(3){animation-delay:1s;}
+  .article-divider{border:none;border-top:1px solid var(--border);margin:28px 0;}
+  .article-rank-line{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+  .rank-num-box{background:var(--dark);color:white;font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600;padding:4px 10px;}
+  .school-short{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--amber);letter-spacing:2px;}
+  .article-headline{font-size:22px;font-weight:600;line-height:1.3;margin-bottom:14px;color:var(--dark);}
+  .article-body{font-size:14px;line-height:2;color:var(--muted);}
+  .keyword-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+  .ktag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;padding:3px 8px;border:1px solid var(--border);color:var(--muted);}
+  .ktag.red{border-color:var(--red);color:var(--red);}
+  .sidebar-item{margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--border);opacity:0;animation:fadeIn .5s ease forwards;}
+  .sidebar-item:last-child{border-bottom:none;}
+  .sidebar-item:nth-child(1){animation-delay:.6s;}
+  .sidebar-item:nth-child(2){animation-delay:.8s;}
+  .sidebar-item:nth-child(3){animation-delay:1s;}
+  .sidebar-item:nth-child(4){animation-delay:1.2s;}
+  .sidebar-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--red);margin-bottom:8px;text-transform:uppercase;}
+  .sidebar-text{font-size:13px;line-height:1.8;color:var(--text);}
+  .bottom-bar{max-width:1200px;margin:0 auto;padding:28px 60px;background:var(--dark);color:rgba(255,255,255,.4);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;display:flex;justify-content:space-between;}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+</style>
+</head>
+<body>
+<header>
+  <div class="masthead"><span class="masthead-date">2025 年研究所指南</span><span class="masthead-logo">台灣學術研究導覽</span><span class="masthead-num">第 04 號 / 共 05 期</span></div>
+  <div class="breaking-bar">⚠ 假訊息攻擊：台灣連續多年名列全球受假訊息影響最嚴重的國家之一</div>
+  <div class="headline-section">
+    <div class="topic-kicker">熱門方向 04 / 05</div>
+    <h1>假訊息<br>數位媒體識讀</h1>
+    <p class="deck">Disinformation &amp; Digital Media Literacy — 守護資訊真實的學術前線</p>
+  </div>
+</header>
+<main>
+  <div class="col"><div class="col-label">背景脈絡</div><div class="context-block"><p>台灣身處地緣政治敏感區，境外假訊息的攻勢從未停歇。瑞典哥德堡大學連年報告指出台灣是全球受假訊息衝擊最嚴重的地區之一，此議題因此成為台灣傳播學界最迫切的研究焦點之一。</p><div class="stat-callout"><div class="big-num">10+</div><div class="stat-desc">台灣蟬聯全球受假訊息攻擊最嚴重國家榜首的年數（據全球民主調查報告）</div></div><p>AI 工具的崛起讓假訊息製造成本驟降，媒體識讀教育的重要性因此急遽提升，各大國立大學積極投入相關研究與師資培育工作。</p></div></div>
+  <div class="col"><div class="col-label">頂尖研究所報告</div>
+    <div class="rank-article"><div class="article-rank-line"><span class="rank-num-box">No.1</span><span class="school-short">NCCU — 政治大學</span></div><div class="article-headline">新聞研究所暨傳播學院</div><div class="article-body">政大新聞所長期位居台灣假訊息研究的核心位置。師資主持多項國科會及媒體素養相關研究計畫，積極倡議成立行政院媒體素養辦公室。傳播學院亦開設「新聞與媒體實驗室」，是台灣培育媒體識讀研究人才的最重要基地。</div><div class="keyword-tags"><span class="ktag red">假訊息查核</span><span class="ktag red">媒體素養</span><span class="ktag">資訊生態</span><span class="ktag">新聞學</span></div></div>
+    <hr class="article-divider">
+    <div class="rank-article"><div class="article-rank-line"><span class="rank-num-box">No.2</span><span class="school-short">NTNU — 師範大學</span></div><div class="article-headline">大眾傳播研究所</div><div class="article-body">師大大傳所在台灣媒體識讀教育推廣上貢獻卓著，持續呼籲出版《媒體素養教育白皮書》並強化師資培育體系。師大兼具教育學院資源，研究成果得以有效轉化為中小學課程教材，形成學術研究到教育實踐的完整鏈結。</div><div class="keyword-tags"><span class="ktag red">師資培育</span><span class="ktag red">媒體素養營</span><span class="ktag">教育傳播</span><span class="ktag">公民素養</span></div></div>
+    <hr class="article-divider">
+    <div class="rank-article"><div class="article-rank-line"><span class="rank-num-box">No.3</span><span class="school-short">NTU — 臺灣大學</span></div><div class="article-headline">新聞研究所</div><div class="article-body">台大新聞所結合資工學院的 AI 技術能量，開發自動化假訊息偵測系統，透過分析新聞擴散結構、用字遣詞與使用者情感變化，建構量化的假訊息識別模型，是科技與新聞學跨域合作的前沿陣地。</div><div class="keyword-tags"><span class="ktag red">AI 偵測系統</span><span class="ktag red">假新聞識別</span><span class="ktag">跨院合作</span><span class="ktag">計算傳播</span></div></div>
+  </div>
+  <div class="col"><div class="col-label">延伸議題</div>
+    <div class="sidebar-item"><div class="sidebar-label">深偽技術（Deepfake）</div><div class="sidebar-text">AI 生成的影像與聲音讓假訊息製作更逼真，各研究所正積極開發多模態偵測工具。</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">平台治理</div><div class="sidebar-text">社群平台的演算法設計如何助長或抑制假訊息傳播，是政策研究與傳播學術的重要交集。</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">資訊戰與選舉</div><div class="sidebar-text">選舉週期中的資訊操控研究成為台灣政治傳播學者最關注的急迫議題。</div></div>
+    <div class="sidebar-item"><div class="sidebar-label">國際合作</div><div class="sidebar-text">台灣學者積極與歐美事實查核機構及媒體素養組織建立跨國研究夥伴關係。</div></div>
+  </div>
+</main>
+<div class="bottom-bar"><span>Taiwan National University Research Guide · 2025</span><span>Topic 04 — Disinformation &amp; Media Literacy</span></div>
+</body>
+</html>
