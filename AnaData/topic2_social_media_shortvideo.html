@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>社群媒體與短影音傳播｜台灣頂尖研究所</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#f5f0e8;--ink:#1a1208;--accent:#e8360a;--yellow:#f5c800;--cream:#ede8dc;--mid:#8a7d6b;--card-border:#c8bfaf; }
+  * { margin:0;padding:0;box-sizing:border-box; }
+  body { background:var(--bg);color:var(--ink);font-family:'Noto Sans TC',sans-serif;overflow-x:hidden; }
+  .back-btn { position:fixed;top:20px;left:20px;z-index:100;background:var(--ink);color:var(--yellow);padding:8px 16px;font-size:11px;letter-spacing:2px;text-decoration:none;font-weight:700; }
+  .back-btn:hover { background:#333; }
+  header { background:var(--ink);color:#f5f0e8;position:relative;overflow:hidden; }
+  .header-inner { padding:80px 64px 64px;position:relative;z-index:1; }
+  header::after { content:'';position:absolute;bottom:-1px;left:0;right:0;height:60px;background:var(--bg);clip-path:polygon(0 100%,100% 0,100% 100%); }
+  .stripes { position:absolute;top:0;right:0;width:300px;height:100%;background:repeating-linear-gradient(45deg,transparent,transparent 8px,rgba(245,200,0,.15) 8px,rgba(245,200,0,.15) 16px);pointer-events:none; }
+  .topic-badge { display:inline-block;background:var(--accent);color:white;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:6px 14px;margin-bottom:28px; }
+  h1 { font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,10vw,120px);line-height:.9;letter-spacing:2px;color:#f5f0e8; }
+  h1 .highlight { color:var(--yellow);display:block; }
+  .en-title { margin-top:20px;font-size:13px;letter-spacing:4px;color:rgba(245,240,232,.45);text-transform:uppercase; }
+  main { padding:80px 64px;max-width:1100px;margin:0 auto; }
+  .intro-row { display:grid;grid-template-columns:1fr 2fr;gap:40px;margin-bottom:64px;align-items:start; }
+  .intro-num { font-family:'Bebas Neue',sans-serif;font-size:140px;line-height:1;color:var(--cream);text-align:center;border:2px solid var(--card-border);padding:20px; }
+  .intro-text h2 { font-size:24px;font-weight:700;margin-bottom:16px; }
+  .intro-text p { font-size:15px;line-height:2;color:var(--mid); }
+  .ranking-label { font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:24px;display:flex;align-items:center;gap:12px; }
+  .ranking-label::before { content:'';width:24px;height:2px;background:var(--accent); }
+  .rank-list { display:flex;flex-direction:column;gap:0;border:2px solid var(--ink); }
+  .rank-item { display:grid;grid-template-columns:80px 1fr;border-bottom:2px solid var(--ink); }
+  .rank-item:last-child { border-bottom:none; }
+  .rank-num { background:var(--ink);color:var(--yellow);font-family:'Bebas Neue',sans-serif;font-size:40px;display:flex;align-items:center;justify-content:center;padding:24px 0; }
+  .rank-content { padding:28px 32px;background:white;transition:background .2s; }
+  .rank-item:hover .rank-content { background:var(--cream); }
+  .rank-school-tag { font-size:11px;font-weight:700;letter-spacing:2px;color:var(--mid);margin-bottom:8px;text-transform:uppercase; }
+  .rank-dept-name { font-size:20px;font-weight:700;color:var(--ink);margin-bottom:14px;line-height:1.3; }
+  .features { display:flex;flex-wrap:wrap;gap:8px; }
+  .feat-pill { font-size:12px;background:var(--cream);border:1px solid var(--card-border);padding:4px 12px;color:var(--ink);border-radius:2px; }
+  .feat-pill.hot { background:var(--accent);color:white;border-color:var(--accent); }
+  footer { background:var(--ink);color:rgba(245,240,232,.4);padding:28px 64px;font-size:12px;letter-spacing:2px;text-transform:uppercase;display:flex;justify-content:space-between; }
+</style>
+</head>
+<body>
+<a href="../index.html" class="back-btn">← 返回首頁</a>
+<header>
+  <div class="stripes"></div>
+  <div class="header-inner">
+    <div class="topic-badge">熱門方向 02 / 05</div>
+    <h1>社群媒體<span class="highlight">短影音傳播</span></h1>
+    <div class="en-title">Social Media &amp; Short-Video Communication</div>
+  </div>
+</header>
+<main>
+  <div class="intro-row">
+    <div class="intro-num">02</div>
+    <div class="intro-text">
+      <h2>為什麼短影音傳播成為顯學？</h2>
+      <p>TikTok、Instagram Reels 與 YouTube Shorts 的崛起徹底改變了資訊傳遞的節奏與形式。根據台灣網路報告，短影音正在重塑台灣民眾的資訊消費與創作生態，從情緒放鬆到「問題性使用」現象，學術界對此投入大量研究資源，探索平台演算法、閱聽人行為與社會影響之間的複雜互動關係。</p>
+    </div>
+  </div>
+  <div class="ranking-label">頂尖研究所排行</div>
+  <div class="rank-list">
+    <div class="rank-item"><div class="rank-num">1</div><div class="rank-content"><div class="rank-school-tag">NCCU — 國立政治大學</div><div class="rank-dept-name">傳播學院碩士學位學程</div><div class="features"><span class="feat-pill hot">社群媒體研究</span><span class="feat-pill hot">KOL 內容行銷</span><span class="feat-pill">閱聽人實踐</span><span class="feat-pill">影音創意製作</span></div></div></div>
+    <div class="rank-item"><div class="rank-num">2</div><div class="rank-content"><div class="rank-school-tag">NYCU — 國立陽明交通大學</div><div class="rank-dept-name">傳播與科技系所</div><div class="features"><span class="feat-pill hot">量化傳播研究</span><span class="feat-pill hot">數據分析導向</span><span class="feat-pill">UI/UX 設計</span><span class="feat-pill">AR/VR 媒體</span></div></div></div>
+    <div class="rank-item"><div class="rank-num">3</div><div class="rank-content"><div class="rank-school-tag">NTNU — 國立臺灣師範大學</div><div class="rank-dept-name">大眾傳播研究所</div><div class="features"><span class="feat-pill hot">媒體素養教育</span><span class="feat-pill hot">社群影響研究</span><span class="feat-pill">傳播與文化</span><span class="feat-pill">師資培育整合</span></div></div></div>
+  </div>
+</main>
+<footer>
+  <span>Taiwan National University Research Guide · 2025</span>
+  <span>Topic 02 — Social Media</span>
+</footer>
+</body>
+</html>

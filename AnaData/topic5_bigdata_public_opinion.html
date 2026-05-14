@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大數據與網路輿情分析｜台灣頂尖研究所</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#050a14;--surface:#0a1628;--border:#0d2040;--accent:#00d4ff;--accent2:#ff6b35;--accent3:#00ff88;--text:#cdd9e8;--muted:#4a6080;--card:#081020;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC',sans-serif;overflow-x:hidden;}
+  body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 20%,rgba(0,212,255,.06) 0%,transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(0,255,136,.04) 0%,transparent 60%);pointer-events:none;z-index:0;}
+  .back-btn{position:fixed;top:20px;left:20px;z-index:100;background:rgba(0,212,255,.15);border:1px solid rgba(0,212,255,.4);color:var(--accent);padding:8px 16px;font-family:'Orbitron',sans-serif;font-size:10px;letter-spacing:2px;text-decoration:none;text-transform:uppercase;}
+  .back-btn:hover{background:rgba(0,212,255,.25);}
+  header{position:relative;z-index:1;padding:80px 64px 64px;border-bottom:1px solid var(--border);}
+  .header-grid{display:grid;grid-template-columns:1fr auto;align-items:end;gap:40px;}
+  .topic-id{font-family:'Orbitron',sans-serif;font-size:10px;letter-spacing:4px;color:var(--accent);text-transform:uppercase;margin-bottom:24px;}
+  h1{font-family:'Orbitron',sans-serif;font-size:clamp(28px,5vw,56px);font-weight:900;line-height:1.15;color:white;}
+  h1 .data{color:var(--accent);display:block;}
+  h1 .opinion{color:var(--accent3);}
+  .en-sub{margin-top:16px;font-size:12px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;}
+  .live-indicators{display:flex;flex-direction:column;gap:12px;}
+  .indicator{background:var(--card);border:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;gap:12px;font-family:'Orbitron',sans-serif;font-size:11px;min-width:200px;}
+  .ind-dot{width:8px;height:8px;border-radius:50%;animation:blink 1.5s ease-in-out infinite;flex-shrink:0;}
+  .ind-dot.blue{background:var(--accent);box-shadow:0 0 8px var(--accent);}
+  .ind-dot.green{background:var(--accent3);box-shadow:0 0 8px var(--accent3);animation-delay:.5s;}
+  .ind-dot.orange{background:var(--accent2);box-shadow:0 0 8px var(--accent2);animation-delay:1s;}
+  .ind-label{color:var(--muted);font-size:9px;}
+  .ind-val{color:var(--accent);}
+  main{position:relative;z-index:1;padding:64px;max-width:1200px;margin:0 auto;}
+  .institutes{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);border:1px solid var(--border);margin-bottom:60px;}
+  .institute-panel{background:var(--card);padding:36px;position:relative;overflow:hidden;transition:background .3s;}
+  .institute-panel:hover{background:var(--surface);}
+  .institute-panel::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+  .institute-panel:nth-child(1)::after{background:var(--accent);}
+  .institute-panel:nth-child(2)::after{background:var(--accent3);}
+  .institute-panel:nth-child(3)::after{background:var(--accent2);}
+  .panel-rank{font-family:'Orbitron',sans-serif;font-size:60px;font-weight:900;color:rgba(0,212,255,.07);position:absolute;top:12px;right:20px;line-height:1;}
+  .panel-school{font-family:'Orbitron',sans-serif;font-size:10px;letter-spacing:3px;margin-bottom:16px;}
+  .institute-panel:nth-child(1) .panel-school{color:var(--accent);}
+  .institute-panel:nth-child(2) .panel-school{color:var(--accent3);}
+  .institute-panel:nth-child(3) .panel-school{color:var(--accent2);}
+  .panel-dept{font-size:18px;font-weight:700;color:white;margin-bottom:24px;line-height:1.4;}
+  .skill-list{display:flex;flex-direction:column;gap:14px;}
+  .skill-name{font-size:11px;letter-spacing:1px;color:var(--muted);margin-bottom:6px;display:flex;justify-content:space-between;}
+  .skill-bar-bg{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+  .skill-bar-fill{height:100%;border-radius:2px;}
+  .blue-fill{background:linear-gradient(90deg,var(--accent),rgba(0,212,255,.3));}
+  .green-fill{background:linear-gradient(90deg,var(--accent3),rgba(0,255,136,.3));}
+  .orange-fill{background:linear-gradient(90deg,var(--accent2),rgba(255,107,53,.3));}
+  footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:28px 64px;font-family:'Orbitron',sans-serif;font-size:10px;letter-spacing:2px;color:var(--muted);display:flex;justify-content:space-between;text-transform:uppercase;}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+</style>
+</head>
+<body>
+<a href="../index.html" class="back-btn">← 返回首頁</a>
+<header>
+  <div class="header-grid">
+    <div>
+      <div class="topic-id">// RESEARCH_TOPIC_05 — DATA_ANALYSIS</div>
+      <h1><span class="data">大數據</span>網路<span class="opinion">輿情</span>分析</h1>
+      <div class="en-sub">Big Data &amp; Online Public Opinion Analysis</div>
+    </div>
+    <div class="live-indicators">
+      <div class="indicator"><span class="ind-dot blue"></span><div><div class="ind-label">RESEARCH STATUS</div><div class="ind-val">ACTIVE</div></div></div>
+      <div class="indicator"><span class="ind-dot green"></span><div><div class="ind-label">TOP INSTITUTES</div><div class="ind-val">03 FOUND</div></div></div>
+      <div class="indicator"><span class="ind-dot orange"></span><div><div class="ind-label">TOPIC RANK</div><div class="ind-val">05 / 05</div></div></div>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="institutes">
+    <div class="institute-panel"><div class="panel-rank">1</div><div class="panel-school">NTU — 國立臺灣大學</div><div class="panel-dept">資訊網路與多媒體所<br>/ 電機資訊學院</div><div class="skill-list"><div><div class="skill-name"><span>機器學習 / 深度學習</span><span>95%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill blue-fill" style="width:95%"></div></div></div><div><div class="skill-name"><span>社群網路分析</span><span>90%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill blue-fill" style="width:90%"></div></div></div><div><div class="skill-name"><span>情感分析 NLP</span><span>92%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill blue-fill" style="width:92%"></div></div></div></div></div>
+    <div class="institute-panel"><div class="panel-rank">2</div><div class="panel-school">NCU — 國立中央大學</div><div class="panel-dept">資訊工程學系<br>/ 網路學習科技研究所</div><div class="skill-list"><div><div class="skill-name"><span>教育大數據分析</span><span>90%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill green-fill" style="width:90%"></div></div></div><div><div class="skill-name"><span>資料視覺化探索</span><span>85%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill green-fill" style="width:85%"></div></div></div><div><div class="skill-name"><span>LLM 應用與認證</span><span>83%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill green-fill" style="width:83%"></div></div></div></div></div>
+    <div class="institute-panel"><div class="panel-rank">3</div><div class="panel-school">NYCU — 國立陽明交通大學</div><div class="panel-dept">傳播與科技系所<br>/ 資訊科學與工程所</div><div class="skill-list"><div><div class="skill-name"><span>網路輿情量化研究</span><span>88%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill orange-fill" style="width:88%"></div></div></div><div><div class="skill-name"><span>社群媒體數據採集</span><span>85%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill orange-fill" style="width:85%"></div></div></div><div><div class="skill-name"><span>傳播 × 資工跨域</span><span>90%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill orange-fill" style="width:90%"></div></div></div></div></div>
+  </div>
+</main>
+<footer><span>Taiwan National University Research Guide · 2025</span><span>Topic 05 — Big Data &amp; Public Opinion</span></footer>
+</body>
+</html>

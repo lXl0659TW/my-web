@@ -1,9 +1,362 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html>
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
-<title>SHU MCP Class</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHU MCP Class — 台灣AI傳播研究導覽</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f9f8f5;
+    --dark: #1a1a2e;
+    --accent: #4f46e5;
+    --accent-light: #e0e7ff;
+    --text: #1e1e2e;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --white: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans TC', sans-serif;
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--dark);
+    padding: 80px 64px 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 10% 50%, rgba(79,70,229,0.35) 0%, transparent 55%),
+      radial-gradient(ellipse at 90% 20%, rgba(99,102,241,0.2) 0%, transparent 50%);
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 900px; }
+  .hero-kicker {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(165,180,252,0.8);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.5s 0.1s ease forwards;
+  }
+  .hero h1 {
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    opacity: 0;
+    animation: fadeUp 0.5s 0.3s ease forwards;
+  }
+  .hero h1 span { color: #a5b4fc; }
+  .hero-desc {
+    margin-top: 20px;
+    font-size: 16px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.8;
+    max-width: 560px;
+    opacity: 0;
+    animation: fadeUp 0.5s 0.5s ease forwards;
+  }
+  .hero-meta {
+    margin-top: 32px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.5s 0.7s ease forwards;
+  }
+  .meta-chip {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: rgba(165,180,252,0.7);
+    border: 1px solid rgba(165,180,252,0.25);
+    padding: 6px 14px;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 64px 64px 80px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.5s 0.6s ease forwards;
+  }
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .section-count {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* ── TOPIC CARDS ── */
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .topic-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards;
+  }
+  .topic-card:nth-child(1) { animation-delay: 0.7s; }
+  .topic-card:nth-child(2) { animation-delay: 0.85s; }
+  .topic-card:nth-child(3) { animation-delay: 1.0s; }
+  .topic-card:nth-child(4) { animation-delay: 1.15s; }
+  .topic-card:nth-child(5) { animation-delay: 1.3s; }
+  .topic-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(79,70,229,0.12);
+    border-color: rgba(79,70,229,0.3);
+  }
+
+  .card-top {
+    padding: 28px 28px 20px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .card-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 48px;
+    font-weight: 700;
+    color: rgba(79,70,229,0.07);
+    position: absolute;
+    top: 12px; right: 20px;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .card-tag {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 14px;
+  }
+  .card-title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--dark);
+  }
+  .card-en {
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+
+  .card-bottom {
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+  .card-keywords {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .kw {
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+  .card-arrow {
+    font-size: 18px;
+    color: var(--accent);
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .topic-card:hover .card-arrow {
+    opacity: 1;
+    transform: translateX(4px);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .footer-logo { font-weight: 700; color: var(--dark); letter-spacing: 2px; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
 </head>
 <body>
-OK, My index.html
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-kicker">SHU MCP Class · 2025</div>
+    <h1>台灣 AI 傳播<br><span>研究所導覽</span></h1>
+    <p class="hero-desc">
+      五大熱門研究方向 × 頂尖國立大學系所推薦<br>
+      從生成式 AI 到大數據輿情，探索台灣傳播學術前沿。
+    </p>
+    <div class="hero-meta">
+      <span class="meta-chip">5 個研究主題</span>
+      <span class="meta-chip">國立大學頂尖系所</span>
+      <span class="meta-chip">2025 最新整理</span>
+    </div>
+  </div>
+</section>
+
+<div class="section-wrap">
+  <div class="section-header">
+    <span class="section-label">研究主題導覽</span>
+    <div class="section-line"></div>
+    <span class="section-count">5 topics</span>
+  </div>
+
+  <div class="topics-grid">
+
+    <a href="AnaData/topic1_generative_ai_media.html" class="topic-card">
+      <div class="card-top">
+        <div class="card-num">01</div>
+        <div class="card-tag">Topic 01</div>
+        <div class="card-title">生成式AI與<br>媒體內容創作</div>
+        <div class="card-en">Generative AI &amp; Media Content Creation</div>
+      </div>
+      <div class="card-bottom">
+        <div class="card-keywords">
+          <span class="kw">LLM</span>
+          <span class="kw">多模態</span>
+          <span class="kw">AI新聞學</span>
+        </div>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="AnaData/topic2_social_media_shortvideo.html" class="topic-card">
+      <div class="card-top">
+        <div class="card-num">02</div>
+        <div class="card-tag">Topic 02</div>
+        <div class="card-title">社群媒體與<br>短影音傳播</div>
+        <div class="card-en">Social Media &amp; Short-Video Communication</div>
+      </div>
+      <div class="card-bottom">
+        <div class="card-keywords">
+          <span class="kw">TikTok</span>
+          <span class="kw">KOL</span>
+          <span class="kw">演算法</span>
+        </div>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="AnaData/topic3_ai_chatbot_ux.html" class="topic-card">
+      <div class="card-top">
+        <div class="card-num">03</div>
+        <div class="card-tag">Topic 03</div>
+        <div class="card-title">AI聊天機器人與<br>使用者體驗</div>
+        <div class="card-en">AI Chatbot &amp; User Experience</div>
+      </div>
+      <div class="card-bottom">
+        <div class="card-keywords">
+          <span class="kw">Chatbot</span>
+          <span class="kw">UX</span>
+          <span class="kw">NLP</span>
+        </div>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="AnaData/topic4_disinformation_media_literacy.html" class="topic-card">
+      <div class="card-top">
+        <div class="card-num">04</div>
+        <div class="card-tag">Topic 04</div>
+        <div class="card-title">假訊息與<br>數位媒體識讀</div>
+        <div class="card-en">Disinformation &amp; Digital Media Literacy</div>
+      </div>
+      <div class="card-bottom">
+        <div class="card-keywords">
+          <span class="kw">事實查核</span>
+          <span class="kw">媒體素養</span>
+          <span class="kw">Deepfake</span>
+        </div>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="AnaData/topic5_bigdata_public_opinion.html" class="topic-card">
+      <div class="card-top">
+        <div class="card-num">05</div>
+        <div class="card-tag">Topic 05</div>
+        <div class="card-title">大數據與<br>網路輿情分析</div>
+        <div class="card-en">Big Data &amp; Online Public Opinion Analysis</div>
+      </div>
+      <div class="card-bottom">
+        <div class="card-keywords">
+          <span class="kw">大數據</span>
+          <span class="kw">NLP</span>
+          <span class="kw">輿情監控</span>
+        </div>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<footer>
+  <span class="footer-logo">SHU MCP CLASS</span>
+  <span>Taiwan AI Communication Research Guide · 2025</span>
+</footer>
+
 </body>
 </html>
